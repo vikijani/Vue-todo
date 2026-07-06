@@ -1,11 +1,16 @@
-<script setup lang="ts">
+<script setup>
 import SingleItem from './SingleItem.vue';
-
+defineProps(["tasks"])
 </script>
 
 <template>
   <ul class="task-list">
-    <SingleItem/>
+    <SingleItem
+    v-for="(task, index) in tasks"
+    :key="index"
+    :task="task"
+    :index="index"
+    />
   </ul>
 </template>
 

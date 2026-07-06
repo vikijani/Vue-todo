@@ -1,10 +1,20 @@
+<script setup>
+import { inject } from 'vue';
+
+defineProps(["task", "index"])
+const deleteTask = inject("deleteTask");
+const toggleStatus = inject("toggleStatus");
+</script>
+
 <template>
-  <form class="task-item">
-    <span></span>
-    <button type="submit">Delete</button>
-  </form>
+  <li class="task-item">
+    <span :class="{completed : task.completed}" @click="toggleStatus(index)">
+       {{ task.title }}</span>
+    <button @click="deleteTask(index)">Delete</button>
+  </li>
 
 </template>
+
 <style>
 .task-item {
   display: flex;
@@ -23,7 +33,7 @@
 
 .task-item span.completed {
   text-decoration: line-through;
-  color: gray;
+  color: rgb(139, 10, 10);
 }
 
 .task-item button {
