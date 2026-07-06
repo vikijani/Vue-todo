@@ -1,7 +1,13 @@
+<script setup>
+import { ref } from 'vue';
+const newTask = ref('');
+const emit = defineEmits(["add-task"])
+</script>
+
 <template>
-  <form class="task-form">
-    <input type="text" placeholder="Enter your task...">
-    <button>Submit</button>
+  <form class="task-form" @submit.prevent="(emit, newTask), newTask = ''">
+    <input v-model="newTask" type="text" placeholder="Enter your task...">
+    <button type="submit">Submit</button>
   </form>
 
 </template>

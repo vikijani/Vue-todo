@@ -1,12 +1,26 @@
 <script setup>
 import FormSubmit from './components/FormSubmit.vue';
 import ItemList from './components/ItemList.vue';
+
+let tasks = [];
+
+function addTask(task){
+  tasks.push({title: task, completed: false})
+}
+
+function deleteTask(index){
+  tasks.splice(index, 1)
+}
+
+function toggleStatus(index){
+  tasks[index].completed = !tasks[index].completed
+}
 </script>
 
 <template>
   <div class="app-container">
     <h1>Todo Project</h1>
-    <FormSubmit/>
+    <FormSubmit @add-task="addTask"/>
     <ItemList/>
   </div>
 </template>
